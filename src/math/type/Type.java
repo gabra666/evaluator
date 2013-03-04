@@ -1,5 +1,17 @@
 package math.type;
 
-public class Type {
+
+
+public class Type<T> {
+
+    private Type() {
+    }
+
+    
+     
+    
+   
+    
+   
     
 }

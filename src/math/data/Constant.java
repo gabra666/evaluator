@@ -2,7 +2,7 @@ package math.data;
 
 import math.type.Type;
 
-public class Constant extends Node {
+public class Constant extends Token {
 
     private final Type value;
 
