@@ -1,18 +1,21 @@
 package math.operation;
 
+import math.calculator.CoreNumberCalculator;
 import math.data.Token;
+import math.data.Type;
+import math.operator.BinaryOperator;
 import math.operator.Operator;
-import math.type.Type;
 
 public class BinaryOperation extends Operation{
 
-    private final Token LeftChild;
-    private final Token RightChild;
-    private final Operator operator;
+    private final Token leftChild;
+    private final Token rightChild;
+    private final BinaryOperator operator;
+    private CoreNumberCalculator coreNumberCalculator = new CoreNumberCalculator();
 
-    public BinaryOperation(Token LeftChild, Token RightChild, Operator operator) {
-        this.LeftChild = LeftChild;
-        this.RightChild = RightChild;
+    public BinaryOperation(Token LeftChild, Token RightChild, BinaryOperator operator) {
+        this.leftChild = LeftChild;
+        this.rightChild = RightChild;
         this.operator = operator;
     }
 
@@ -22,16 +25,18 @@ public class BinaryOperation extends Operation{
 
     
     public Token getLeftChild() {
-        return LeftChild;
+        return leftChild;
     }
 
     public Token getRightChild() {
-        return RightChild;
+        return rightChild;
     }
 
     @Override
     public Type evaluate() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Type leftEvaluate = leftChild.evaluate(); 
+        Type rightEvaluate = rightChild.evaluate(); 
+        return coreNumberCalculator.getResult(Operator operator, new Object[]{leftEvaluate,rightEvaluate});
     }
     
     

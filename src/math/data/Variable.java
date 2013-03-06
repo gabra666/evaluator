@@ -1,7 +1,5 @@
 package math.data;
 
-import math.type.Type;
-
 public class Variable extends Token {
 
     @Override

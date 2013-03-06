@@ -1,8 +1,8 @@
 package math.operation;
 
 import math.data.Token;
+import math.data.Type;
 import math.operator.Operator;
-import math.type.Type;
 
 public class UnaryOperation extends Operation{
 
