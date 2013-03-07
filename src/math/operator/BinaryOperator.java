@@ -2,8 +2,10 @@ package math.operator;
 
 public class BinaryOperator extends Operator {
 
-    private static final Operator ADD = new Operator("+", "add");
-    private static final Operator SUBSTRACT = new Operator("-", "substract");
+    public static final BinaryOperator ADD = new BinaryOperator("+", "add");
+    public static final BinaryOperator SUBSTRACT = new BinaryOperator("-", "substract");
+    public static final BinaryOperator MULTIPLY = new BinaryOperator("*", "multiply");
+    public static final BinaryOperator DIVISION = new BinaryOperator("-", "division");
 
     private BinaryOperator(String symbol, String name) {
         super(symbol, name);

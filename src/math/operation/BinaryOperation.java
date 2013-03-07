@@ -36,7 +36,7 @@ public class BinaryOperation extends Operation{
     public Type evaluate() {
         Type leftEvaluate = leftChild.evaluate(); 
         Type rightEvaluate = rightChild.evaluate(); 
-        return coreNumberCalculator.getResult(Operator operator, new Object[]{leftEvaluate,rightEvaluate});
+        return coreNumberCalculator.getResult(operator, new Object[]{leftEvaluate,rightEvaluate});
     }
     
     
