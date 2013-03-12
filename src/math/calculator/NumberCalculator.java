@@ -1,9 +1,10 @@
 package math.calculator;
+import java.util.HashMap;
 import math.type.Double;
 import math.type.Integer;
 
 public interface NumberCalculator {
-    
+   
     
     public Double add(Double p0, Double p1);
     public Double add(Double p0, Integer p1);

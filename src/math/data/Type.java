@@ -1,6 +1,6 @@
 package math.data;
 
-public class Type<T> {
+public class Type<T> extends Token{
 
     private T value;
 
@@ -10,5 +10,10 @@ public class Type<T> {
 
     public T getValue() {
         return value;
+    }
+
+    @Override
+    public Type evaluate() {
+        return this;
     }
 }

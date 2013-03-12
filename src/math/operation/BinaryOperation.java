@@ -1,6 +1,6 @@
 package math.operation;
 
-import math.calculator.CoreNumberCalculator;
+import math.calculator.CalculatorSolver;
 import math.data.Token;
 import math.data.Type;
 import math.operator.BinaryOperator;
@@ -11,7 +11,7 @@ public class BinaryOperation extends Operation{
     private final Token leftChild;
     private final Token rightChild;
     private final BinaryOperator operator;
-    private CoreNumberCalculator coreNumberCalculator = new CoreNumberCalculator();
+    private CalculatorSolver calculatorSolver = new CalculatorSolver();
 
     public BinaryOperation(Token LeftChild, Token RightChild, BinaryOperator operator) {
         this.leftChild = LeftChild;
@@ -36,7 +36,7 @@ public class BinaryOperation extends Operation{
     public Type evaluate() {
         Type leftEvaluate = leftChild.evaluate(); 
         Type rightEvaluate = rightChild.evaluate(); 
-        return coreNumberCalculator.getResult(operator, new Object[]{leftEvaluate,rightEvaluate});
+        return calculatorSolver.getResult(operator, new Object[]{leftEvaluate,rightEvaluate});
     }
     
     
