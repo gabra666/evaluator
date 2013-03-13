@@ -16,4 +16,9 @@ public class Type<T> extends Token{
     public Type evaluate() {
         return this;
     }
+
+    @Override
+    public String ToString() {
+        return value.toString();
+    }
 }

@@ -6,7 +6,7 @@ import math.data.Type;
 import math.operator.BinaryOperator;
 import math.operator.Operator;
 
-public class BinaryOperation extends Operation{
+public class BinaryOperation extends Operation {
 
     private final Token leftChild;
     private final Token rightChild;
@@ -23,7 +23,6 @@ public class BinaryOperation extends Operation{
         return operator;
     }
 
-    
     public Token getLeftChild() {
         return leftChild;
     }
@@ -34,11 +33,26 @@ public class BinaryOperation extends Operation{
 
     @Override
     public Type evaluate() {
-        Type leftEvaluate = leftChild.evaluate(); 
-        Type rightEvaluate = rightChild.evaluate(); 
-        return calculatorSolver.getResult(operator, new Object[]{leftEvaluate,rightEvaluate});
+        Type leftEvaluate = leftChild.evaluate();
+        Type rightEvaluate = rightChild.evaluate();
+        return calculatorSolver.getResult(operator, new Object[]{leftEvaluate, rightEvaluate});
     }
-    
-    
 
+    @Override
+    public String ToString() {
+        int leftPrecedence;
+        int rightPrecedence;
+        int myPrecedence = operator.getPrecedence();
+        if (leftChild instanceof BinaryOperation) {
+            leftPrecedence = ((BinaryOperation) leftChild).getOperator().getPrecedence();
+        }
+        if (rightChild instanceof BinaryOperation) {
+            rightPrecedence = ((BinaryOperation) rightChild).getOperator().getPrecedence();
+        }
+
+        if (){
+        }
+
+        return leftChild.ToString() + operator.getSymbol() + rightChild.ToString();
+    }
 }

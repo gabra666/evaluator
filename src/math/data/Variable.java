@@ -6,4 +6,9 @@ public class Variable extends Token {
     public Type evaluate() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public String ToString() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

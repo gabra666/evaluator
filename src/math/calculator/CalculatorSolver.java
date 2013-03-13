@@ -29,21 +29,22 @@ public class CalculatorSolver {
         Set<Class<? extends NumberCalculator>> allClasses = ref.getSubTypesOf(NumberCalculator.class);
 
         for (Class<?> c : allClasses) {
-            Method[] methods = c.getDeclaredMethods();
-            for (Method m : methods) {
-                if (m.isAnnotationPresent(Operation.class)) {
-                    calculatorsBySignature.put(getMethodSignature(m), c);
-                    methodBySignature.put(getMethodSignature(m), m);
+            Method[] methodsInClass = c.getDeclaredMethods();
+            for (Method method : methodsInClass) {
+                if (method.isAnnotationPresent(Operation.class)) {
+                    calculatorsBySignature.put(getMethodSignature(method), c);
+                    methodBySignature.put(getMethodSignature(method), method);
                 }
             }
         }
     }
-       public Type getResult(Operator operator, Object[] object) {
+
+    public Type getResult(Operator operator, Object[] object) {
         try {
 
             String signature = getMethodSignature(operator, object);
             return (Type) methodBySignature.get(signature).invoke(calculatorsBySignature.get(signature).newInstance(), object);
-        } catch (InstantiationException|IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             Logger.getLogger(CoreNumberCalculator.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -52,19 +53,13 @@ public class CalculatorSolver {
     private String getMethodSignature(Method method) {
         String signature = method.getName();
         Class<?>[] params = method.getParameterTypes();
-        for (Class paramClass : params) {
-            signature += paramClass.getSimpleName();
-        }
+        for (Class paramClass : params) signature += paramClass.getSimpleName();
         return signature;
     }
 
- 
-
     private String getMethodSignature(Operator operator, Object[] object) {
         String signature = operator.getName();
-        for (Object obj : object) {
-            signature += obj.getClass().getSimpleName();
-        }
+        for (Object obj : object) signature += obj.getClass().getSimpleName();
         return signature;
     }
 }

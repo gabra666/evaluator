@@ -12,4 +12,9 @@ public class Constant extends Token {
     public Type evaluate() {
         return value;
     }
+
+    @Override
+    public String ToString() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
