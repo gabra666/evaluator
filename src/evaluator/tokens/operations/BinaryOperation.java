@@ -1,10 +1,11 @@
-package math.operation;
+package evaluator.tokens.operations;
 
-import math.calculator.CalculatorSolver;
-import math.data.Token;
-import math.data.Type;
-import math.operator.BinaryOperator;
-import math.operator.Operator;
+import evaluator.tokens.Operation;
+import evaluator.CalculatorSolver;
+import evaluator.Token;
+import evaluator.Type;
+import evaluator.operators.BinaryOperator;
+import evaluator.Operator;
 
 public class BinaryOperation extends Operation {
 
@@ -33,26 +34,30 @@ public class BinaryOperation extends Operation {
 
     @Override
     public Type evaluate() {
-        Type leftEvaluate = leftChild.evaluate();
-        Type rightEvaluate = rightChild.evaluate();
-        return calculatorSolver.getResult(operator, new Object[]{leftEvaluate, rightEvaluate});
+        return calculatorSolver.getResult(operator, new Type[]{leftChild.evaluate(), rightChild.evaluate()});
     }
 
     @Override
-    public String ToString() {
+    public String toString() {
+        
         int leftPrecedence;
         int rightPrecedence;
         int myPrecedence = operator.getPrecedence();
+        String tree = "";
+
         if (leftChild instanceof BinaryOperation) {
             leftPrecedence = ((BinaryOperation) leftChild).getOperator().getPrecedence();
+            tree += (myPrecedence < leftPrecedence) ? "(" + leftChild.toString() + ")" : leftChild.toString();
+
+
         }
+        
+        tree += operator.getSymbol();
+
         if (rightChild instanceof BinaryOperation) {
             rightPrecedence = ((BinaryOperation) rightChild).getOperator().getPrecedence();
+            tree += (myPrecedence < rightPrecedence) ? "(" + rightChild.toString() + ")" : rightChild.toString();
         }
-
-        if (){
-        }
-
-        return leftChild.ToString() + operator.getSymbol() + rightChild.ToString();
+        return tree;
     }
 }

@@ -1,6 +1,6 @@
-package math.type;
+package evaluator.types;
 
-import math.data.Type;
+import evaluator.Type;
 
 public class Double extends Type<java.lang.Double> {
 

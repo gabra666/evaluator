@@ -1,11 +1,11 @@
 package math.test;
 
 import junit.framework.Assert;
-import math.data.Token;
-import math.operation.BinaryOperation;
-import math.operator.BinaryOperator;
-import math.type.Double;
-import math.type.Integer;
+import evaluator.Token;
+import evaluator.tokens.operations.BinaryOperation;
+import evaluator.operators.BinaryOperator;
+import evaluator.types.Double;
+import evaluator.types.Integer;
 import org.junit.Test;
 
 public class SubstractTest {

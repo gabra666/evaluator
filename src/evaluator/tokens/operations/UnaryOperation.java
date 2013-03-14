@@ -1,9 +1,10 @@
-package math.operation;
+package evaluator.tokens.operations;
 
-import math.calculator.CalculatorSolver;
-import math.data.Token;
-import math.data.Type;
-import math.operator.Operator;
+import evaluator.tokens.Operation;
+import evaluator.CalculatorSolver;
+import evaluator.Token;
+import evaluator.Type;
+import evaluator.Operator;
 
 public class UnaryOperation extends Operation{
 
@@ -26,12 +27,12 @@ public class UnaryOperation extends Operation{
 
     @Override
     public Type evaluate() {
-        return calculatorSolver.getResult(operator, new Object[]{child.evaluate()});
+        return calculatorSolver.getResult(operator, new Type[]{child.evaluate()});
     }
 
     @Override
-    public String ToString() {
-        return child.ToString()+operator.getSymbol();
+    public String toString() {
+        return child.toString()+operator.getSymbol();
     }
     
     

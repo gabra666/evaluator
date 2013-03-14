@@ -1,4 +1,6 @@
-package math.operator;
+package evaluator.operators;
+
+import evaluator.Operator;
 
 public class BinaryOperator extends Operator {
 

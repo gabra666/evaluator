@@ -1,4 +1,4 @@
-package math.operator;
+package evaluator;
 
 public class Operator {
 

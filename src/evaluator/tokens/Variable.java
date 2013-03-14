@@ -1,4 +1,7 @@
-package math.data;
+package evaluator.tokens;
+
+import evaluator.Token;
+import evaluator.Type;
 
 public class Variable extends Token {
 
@@ -8,7 +11,7 @@ public class Variable extends Token {
     }
 
     @Override
-    public String ToString() {
+    public String toString() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

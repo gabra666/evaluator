@@ -1,6 +1,6 @@
-package math.type;
+package evaluator.types;
 
-import math.data.Type;
+import evaluator.Type;
 
 public class Integer extends Type<java.lang.Integer> {
 
