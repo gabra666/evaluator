@@ -1,11 +1,11 @@
 package evaluator.tokens.operations;
 
-import evaluator.tokens.Operation;
 import evaluator.CalculatorSolver;
+import evaluator.Operator;
 import evaluator.Token;
 import evaluator.Type;
 import evaluator.operators.BinaryOperator;
-import evaluator.Operator;
+import evaluator.tokens.Operation;
 
 public class BinaryOperation extends Operation {
 
@@ -39,25 +39,16 @@ public class BinaryOperation extends Operation {
 
     @Override
     public String toString() {
-        
-        int leftPrecedence;
-        int rightPrecedence;
-        int myPrecedence = operator.getPrecedence();
-        String tree = "";
+        return branchToString(leftChild) + operator.getSymbol() + branchToString(rightChild);
+    }
 
-        if (leftChild instanceof BinaryOperation) {
-            leftPrecedence = ((BinaryOperation) leftChild).getOperator().getPrecedence();
-            tree += (myPrecedence < leftPrecedence) ? "(" + leftChild.toString() + ")" : leftChild.toString();
+    private boolean greaterPrecedence(BinaryOperation bOp1, BinaryOperation bOp2) {
+        return (bOp1.getOperator().getPrecedence()
+                > bOp2.getOperator().getPrecedence()) ? true : false;
+    }
 
-
-        }
-        
-        tree += operator.getSymbol();
-
-        if (rightChild instanceof BinaryOperation) {
-            rightPrecedence = ((BinaryOperation) rightChild).getOperator().getPrecedence();
-            tree += (myPrecedence < rightPrecedence) ? "(" + rightChild.toString() + ")" : rightChild.toString();
-        }
-        return tree;
+    private String branchToString(Token token) {
+        return (token instanceof BinaryOperation && greaterPrecedence(this, (BinaryOperation) token))
+                ? "(" + token.toString() + ")" : token.toString();
     }
 }

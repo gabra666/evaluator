@@ -1,4 +1,4 @@
-package math.test;
+package evaluator.test;
 
 import junit.framework.Assert;
 import evaluator.Token;
@@ -31,7 +31,7 @@ public class MultiplyTest {
 
     @Test
     public void integerIntegerMultiplyTest() {
-        Token addToken = new BinaryOperation(new Constant(new Integer(-1)), new evaluator.types.Integer(-2), BinaryOperator.MULTIPLY);
+        Token addToken = new BinaryOperation(new Constant(new Integer(-1)), new Constant(new Integer(-2)), BinaryOperator.MULTIPLY);
         Assert.assertEquals(2, addToken.evaluate().getValue());
     }
 }

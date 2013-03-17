@@ -18,6 +18,6 @@ public class Constant extends Token {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return value.getValue().toString();
     }
 }

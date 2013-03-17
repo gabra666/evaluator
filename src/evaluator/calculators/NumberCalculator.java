@@ -10,7 +10,6 @@ public class NumberCalculator implements Calculator {
 
     public NumberCalculator() {
     }
-    
     @Constant
     public static final double PI = Math.PI;
 

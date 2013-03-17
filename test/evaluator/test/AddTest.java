@@ -1,4 +1,4 @@
-package math.test;
+package evaluator.test;
 
 import junit.framework.Assert;
 import evaluator.CalculatorSolver;
