@@ -1,13 +1,12 @@
 package evaluator.test;
 
-import junit.framework.Assert;
-import evaluator.CalculatorSolver;
 import evaluator.Token;
-import evaluator.tokens.operations.BinaryOperation;
 import evaluator.operators.BinaryOperator;
 import evaluator.tokens.Constant;
+import evaluator.tokens.operations.BinaryOperation;
 import evaluator.types.Double;
 import evaluator.types.Integer;
+import junit.framework.Assert;
 import org.junit.Test;
 
 public class AddTest {

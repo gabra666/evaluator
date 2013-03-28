@@ -9,8 +9,8 @@ import evaluator.tokens.Operation;
 
 public class BinaryOperation extends Operation {
 
-    private final Token leftChild;
-    private final Token rightChild;
+    private Token leftChild;
+    private Token rightChild;
     private final BinaryOperator operator;
     private CalculatorSolver calculatorSolver = new CalculatorSolver();
 
@@ -22,6 +22,14 @@ public class BinaryOperation extends Operation {
 
     public Operator getOperator() {
         return operator;
+    }
+    
+     public void setLeftChild(Token leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public void setRightChild(Token rightChild) {
+        this.rightChild = rightChild;
     }
 
     public Token getLeftChild() {
@@ -51,4 +59,8 @@ public class BinaryOperation extends Operation {
         return (token instanceof BinaryOperation && greaterPrecedence(this, (BinaryOperation) token))
                 ? "(" + token.toString() + ")" : token.toString();
     }
+
+   
+    
+    
 }
