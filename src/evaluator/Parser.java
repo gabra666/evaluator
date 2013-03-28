@@ -27,10 +27,22 @@ public class Parser {
     }
 
     private void getToken(String tokenString) {
-        if ("+".equals(tokenString)) {
-            pushOperator(new BinaryOperation(null, null, BinaryOperator.ADD));
-        } else {
-            treeStack.push(new Constant(new Double(tokenString)));
+        switch (tokenString) {
+            case "+":
+                pushOperator(new BinaryOperation(null, null, BinaryOperator.ADD));
+                break;
+            case "-":
+                pushOperator(new BinaryOperation(null, null, BinaryOperator.SUBSTRACT));
+                break;
+            case "*":
+                pushOperator(new BinaryOperation(null, null, BinaryOperator.MULTIPLY));
+                break;
+            case "/":
+                pushOperator(new BinaryOperation(null, null, BinaryOperator.DIVISION));
+                break;
+            default:
+                treeStack.push(new Constant(new Double(tokenString)));
+                break;
         }
     }
 

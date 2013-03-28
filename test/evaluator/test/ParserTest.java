@@ -42,4 +42,35 @@ public class ParserTest {
          Assert.assertEquals(token.toString(), addToken.toString());    
     }
     
+    @Test
+    public void addSubstracTest(){
+        Parser parser = new Parser();
+         Token addToken = 
+             new BinaryOperation(
+                 new BinaryOperation(
+                    new Constant(new Double(1.0)),
+                    new Constant(new Double(2.0)),
+                    BinaryOperator.SUBSTRACT),
+                 new Constant(new Double(2.0)), 
+                 BinaryOperator.ADD
+             );
+         Token token = parser.getTree("1.0 - 2.0 + 2.0");
+         Assert.assertEquals(token.toString(), addToken.toString());    
+    }
+    @Test
+    public void addMultiplyTest(){
+        Parser parser = new Parser();
+         Token addToken = 
+             new BinaryOperation(
+                 new BinaryOperation(
+                    new Constant(new Double(1.0)),
+                    new Constant(new Double(2.0)),
+                    BinaryOperator.MULTIPLY),
+                 new Constant(new Double(2.0)), 
+                 BinaryOperator.ADD
+             );
+         Token token = parser.getTree("1.0 * 2.0 + 2.0");
+         Assert.assertEquals(token.evaluate().getValue(), addToken.evaluate().getValue());    
+    }
+    
 }
