@@ -1,10 +1,10 @@
 package evaluator.tokens.operations;
 
-import evaluator.tokens.Operation;
 import evaluator.CalculatorSolver;
+import evaluator.Operator;
 import evaluator.Token;
 import evaluator.Type;
-import evaluator.Operator;
+import evaluator.tokens.Operation;
 
 public class UnaryOperation extends Operation{
 

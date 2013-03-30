@@ -1,21 +1,33 @@
 package evaluator;
 
+import evaluator.annotations.Operators;
 import evaluator.operators.BinaryOperator;
 import evaluator.tokens.Constant;
 import evaluator.tokens.operations.BinaryOperation;
 import evaluator.types.Double;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.reflections.Reflections;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 
 public class Parser {
 
     private StringTokenizer treeTokenizer;
     private Stack<Token> treeStack;
     private Stack<Token> operatorStack;
+    private HashMap<String, Operator> operatorsMap = new HashMap<>();
 
     public Parser() {
         treeStack = new Stack();
         operatorStack = new Stack();
+        Reflections ref = new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forJavaClassPath()));
+        addOperatorsToHash(ref.getSubTypesOf(Operator.class));
     }
 
     public Token getTree(String operationString) {
@@ -27,22 +39,11 @@ public class Parser {
     }
 
     private void getToken(String tokenString) {
-        switch (tokenString) {
-            case "+":
-                pushOperator(new BinaryOperation(null, null, BinaryOperator.ADD));
-                break;
-            case "-":
-                pushOperator(new BinaryOperation(null, null, BinaryOperator.SUBSTRACT));
-                break;
-            case "*":
-                pushOperator(new BinaryOperation(null, null, BinaryOperator.MULTIPLY));
-                break;
-            case "/":
-                pushOperator(new BinaryOperation(null, null, BinaryOperator.DIVISION));
-                break;
-            default:
-                treeStack.push(new Constant(new Double(tokenString)));
-                break;
+        Operator operator = operatorsMap.get(tokenString);
+        if (operator != null) {
+            pushOperator(new BinaryOperation(null, null, (BinaryOperator) operator));
+        } else {
+            treeStack.push(new Constant(new Double(tokenString)));
         }
     }
 
@@ -93,6 +94,24 @@ public class Parser {
             operatorStack.push(token);
         } else {
             moveOperator(token);
+        }
+    }
+
+    private void addOperatorsToHash(Set<Class<? extends Operator>> operators) {
+        for (Class<?> theOperator : operators) {
+            addOperatorsToHash(theOperator);
+        }
+    }
+
+    private void addOperatorsToHash(Class<?> theOperator) {
+        for (Field field : theOperator.getDeclaredFields()) {
+            try {
+                if (!field.isAnnotationPresent(Operators.class)) continue;
+                Operator operator = (Operator) field.get(null);
+                operatorsMap.put(operator.getSymbol(), operator);
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
